@@ -38,3 +38,11 @@ type (
 		CreatedAt time.Time `json:"created_at"`
 	}
 )
+
+func init() {
+	rnd = renderer.New()
+	sess, err := mgo.Dial(hostName)
+	checkErr(err)
+	sess.SetMode(mgo.Monotonic, true)
+	db = sess.DB(dbName)
+}
